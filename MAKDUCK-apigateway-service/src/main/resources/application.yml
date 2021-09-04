@@ -1,0 +1,23 @@
+server:
+  port: 8000
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: MAKDUCK-apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://Makduck-userservice
+          predicates:
+            - Path=/user-service/**
+        - id: beer-service
+          uri: lb://Makduck-beerservice
+          predicates:
+            - Path=/beer-service/**
