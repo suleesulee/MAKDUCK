@@ -4,7 +4,11 @@ server:
 spring:
   application:
     name: Makduck-userservice
-
+  jpa:
+    show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
